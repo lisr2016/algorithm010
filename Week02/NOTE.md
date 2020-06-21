@@ -27,7 +27,7 @@ Hashmap 中的加载因子是默认为0.75
 
 
 put:
-
+    transient int modCount;
     /**
      * Implements Map.put and related methods
      *
