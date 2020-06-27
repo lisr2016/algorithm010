@@ -5,20 +5,28 @@
 
 // Java
 public void recur(int level, int param) {
+
   // terminator
+
   if (level > MAX_LEVEL) {
     // process result
     return;
   }
+
   // process current logic
+
   process(level, param);
+
   // drill down
   recur( level: level + 1, newParam);
+
   // restore current status
+
 }
 
-# Python
+
 def recursion(level, param1, param2, ...):
+
     # recursion terminator
     if level > MAX_LEVEL:
 	   process_result
@@ -27,7 +35,7 @@ def recursion(level, param1, param2, ...):
     process(level, data...)
     # drill down
     self.recursion(level + 1, p1, ...)
-    # reverse the current level status if needed
+    # reverse the current level status if needed -->
 
 
 写递归三个思维的要点:
@@ -37,24 +45,25 @@ def recursion(level, param1, param2, ...):
 
 分治代码模板
 
-# Python
+
 def divide_conquer(problem, param1, param2, ...):
-  # recursion terminator
+
+  <!-- # recursion terminator -->
   if problem is None:
 	print_result
 	return
-  # prepare data
+  <!-- # prepare data -->
   data = prepare_data(problem)
   subproblems = split_problem(problem, data)
-  # conquer subproblems
+  <!-- # conquer subproblems -->
   subresult1 = self.divide_conquer(subproblems[0], p1, ...)
   subresult2 = self.divide_conquer(subproblems[1], p1, ...)
   subresult3 = self.divide_conquer(subproblems[2], p1, ...)
   …
-  # process and generate the final result
+  <!-- # process and generate the final result -->
   result = process_result(subresult1, subresult2, subresult3, …)
 
-  # revert the current level states
+  <!-- # revert the current level states -->
 
 分治和递归模板的不同之处：最后把子结果组装成一个大的结果，最后返回。
 
@@ -72,6 +81,7 @@ letter-combinations-of-a-phone-number
 分治回溯
 
 class Solution {
+
     public List<String> letterCombinations(String digits) {
         if (digits == null || digits.length() == 0) {
             return new ArrayList();
