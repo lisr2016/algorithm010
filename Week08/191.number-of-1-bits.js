@@ -27,3 +27,30 @@
 //
 // 进阶:
 //     如果多次调用这个函数，你将如何优化你的算法？
+
+var hammingWeight = function(n) {
+    let bits = 0;
+    let mask = 1;
+    for (let i = 0; i < 32; i++) {
+        if ((n & mask) !== 0) {
+            bits++;
+        }
+        mask <<= 1;
+    }
+    return bits;
+};
+
+// 时间复杂度：O(1)。运行时间依赖于数字 nn 的位数。由于这题中 nn 是一个 32 位数，所以运行时间是 O(1) 的。
+// 空间复杂度：O(1)。没有使用额外空间。
+
+var hammingWeight = function(n) {
+    let sum = 0;
+    while (n !== 0) {
+        sum ++;
+        n &= (n - 1);
+    }
+    return sum;
+};
+
+// 时间复杂度：O(1) 。运行时间与 nn 中位为 11 的有关。在最坏情况下， nn 中所有位都是 11 。对于 32 位整数，运行时间是 O(1) 的。
+// 空间复杂度：O(1) 。没有使用额外空间。

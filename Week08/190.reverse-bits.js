@@ -25,3 +25,13 @@
 //
 // 进阶:
 //     如果多次调用这个函数，你将如何优化你的算法？
+
+var isPowerOfTwo = function(n) {
+    if (n <= 0) return false;
+    while (n % 2 === 0) n /= 2;
+    return n === 1;
+};
+
+var isPowerOfTwo = function(n) {
+    return n > 0 && (n & (n - 1)) === 0;
+};

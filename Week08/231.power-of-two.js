@@ -15,3 +15,25 @@
 //
 // 输入: 218
 // 输出: false
+
+
+
+// 方法一：去除二进制中最右边的 1
+
+var isPowerOfTwo = function(n) {
+    if (n < 1) return false;
+    return (n & (n - 1)) === 0;
+};
+
+// 时间复杂度：O(1)
+// 空间复杂度：O(1)
+
+// 方法二：获取二进制中最右边的 1
+
+var isPowerOfTwo = function(n) {
+    if (n < 1) return false;
+    return (n & (-n)) === n;
+};
+
+// 时间复杂度：O(1)
+// 空间复杂度：O(1)
