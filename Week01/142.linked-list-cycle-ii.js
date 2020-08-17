@@ -32,3 +32,32 @@
 //
 // 进阶：
 // 你是否可以不用额外空间解决此题？
+
+// 1。Hash O(n)、 O(n)
+// 2。快慢指针 O(n)、 O(1)
+
+var detectCycle = function(head) {
+    if(!head || !head.next) return null;
+    let fast = head;
+    let slow = head;
+    while(fast && fast.next){
+        fast = fast.next.next;
+        slow = slow.next;
+        if(fast == slow){
+            break;
+        }
+    }
+    
+    if(fast != slow){
+        return null;
+    }
+    
+    slow = head;
+    
+    while(slow != fast){
+        fast = fast.next;
+        slow = slow.next;
+    }
+    
+    return slow;
+};

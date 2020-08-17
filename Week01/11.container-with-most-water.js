@@ -15,3 +15,15 @@
 //
 // 输入：[1,8,6,2,5,4,8,3,7]
 // 输出：49
+
+// 题解：1.暴力法，枚举  left bar, tight bar (x - y) * height  O(n^2)
+//      2.双指针
+
+var maxArea = function(height) {
+     let max = 0;
+     for (let i = 0, j = height.length - 1; i < j;){
+          let minHtight = height[i] < height[j] ? height[i++] : height[j --];
+          max = Math.max(max, (j - i +1) * minHtight);
+     }
+     return max
+};
