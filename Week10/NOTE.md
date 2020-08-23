@@ -303,6 +303,14 @@ valid-perfect-square 有效的完全平方数
     
 常见题:
 
+longest-valid-parentheses 最长有效括号
+
+minimum-path-sum 最小路径和
+
+edit-distance 编辑距离
+
+burst-balloons 戳气球
+
 <================前缀树================>
 
 基本性质
@@ -377,14 +385,6 @@ disjoint set
 
 基本操作:makeSet(s)、unionSet(x,y)、find(x)
 
-常见题:
-
-friend-circles 朋友圈
-
-number-of-islands 岛屿数量
-
-surrounded-regions 被围绕的岛屿
-
 代码模板:
 
     // JavaScript
@@ -420,7 +420,16 @@ surrounded-regions 被围绕的岛屿
       }
     }
 
+常见题:
+
+friend-circles 朋友圈
+
+number-of-islands 岛屿数量
+
+surrounded-regions 被围绕的岛屿
 <================剪枝、双向BFS、启发式搜索================>
+
+常见题:
 
 valid-sudoku 有效的数独
 
@@ -441,8 +450,6 @@ AVL:
 查询操作比较多选择AVL，插入操作也比较多或者插入查询一半一半选择红黑树
 
 C++、Java 中树的实现一般是红黑树  database一般是AVL
-
-
 
 <================位运算================>
     
