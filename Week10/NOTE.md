@@ -80,7 +80,19 @@ valid-anagram 有效异位词 暴力,排序/Hash
 
 group-anagrams 异位词分组 sliding window/hashMap
 
-图:
+<================Heap & Binary Heap================>
+
+常见题:
+
+sliding-window-maximum 滑动窗口最大值 
+
+top-k-frequent-elements 前k个高频元素
+
+丑数
+
+最小的 k 个数
+
+<================Graph================>
 
 知识：画一下有向有权图
      拓扑排序
@@ -89,15 +101,207 @@ group-anagrams 异位词分组 sliding window/hashMap
 
 number-of-islands 岛屿数量
 
-<================递归 & 分治================>
+<================递归 & 分治、回溯================>
+
+代码模板:
+    
+    递归
+    // JavaScript
+    const recursion = (level, params) =>{
+       // recursion terminator
+       if(level > MAX_LEVEL){
+         process_result
+         return 
+       }
+       // process current level
+       process(level, params)
+       //drill down
+       recursion(level+1, params)
+       //clean current level status if needed  
+    }
+    
+    分治
+    //Javascript
+    const divide_conquer = (problem, params) => {
+    
+      // recursion terminator
+    
+      if (problem == null) {
+    
+        process_result
+    
+        return
+    
+      } 
+    
+      // process current problem
+    
+      subproblems = split_problem(problem, data)
+    
+      subresult1 = divide_conquer(subproblem[0], p1)
+    
+      subresult2 = divide_conquer(subproblem[1], p1)
+    
+      subresult3 = divide_conquer(subproblem[2], p1)
+    
+      ...
+    
+      // merge
+    
+      result = process_result(subresult1, subresult2, subresult3)
+    
+      // revert the current level status
+    
+    }
+    
+常见题:
+
+   递归:
+      
+   爬楼梯
+   
+   括号生成
+   
+   翻转二叉树
+   
+   二叉树的最近公共祖先
+   
+   全排序
+   
+   全排序ii       
+   
+   
+   分治、回溯:
+   
+   Pow(x,n)
+   
+   子集
+   
+   众数
+   
+   电话号码的字母组合
+   
+   N皇后
+
 
 <================DFS & BFS================>
 
+代码模版:
+    
+    DFS
+    
+    递归
+    //JavaScript
+    const visited = new Set()
+    const dfs = node => {
+      if (visited.has(node)) return
+      visited.add(node)
+      dfs(node.left)
+      dfs(node.right)
+    }
+    
+    迭代
+    void dfs(Node* root) {
+      map<int, int> visited;
+      if(!root) return ;
+    
+      stack<Node*> stackNode;
+      stackNode.push(root);
+    
+      while (!stackNode.empty()) {
+        Node* node = stackNode.top();
+        stackNode.pop();
+        if (visited.count(node->val)) continue;
+        visited[node->val] = 1;
+    
+    
+        for (int i = node->children.size() - 1; i >= 0; --i) {
+            stackNode.push(node->children[i]);
+        }
+      }
+    
+      return ;
+    }
+    
+    BFS:
+    //JavaScript
+    const bfs = (root) => {
+      let result = [], queue = [root]
+      while (queue.length > 0) {
+        let level = [], n = queue.length
+        for (let i = 0; i < n; i++) {
+          let node = queue.pop()
+          level.push(node.val) 
+          if (node.left) queue.unshift(node.left)
+          if (node.right) queue.unshift(node.right)
+        }
+        result.push(level)
+      }
+      return result
+    };
+    
+常见题：
+
+二叉树的层序遍历
+
+最小基因变化
+
+括号生成
+
+在每个树行中找最大值
+
+单词接龙
+单词接龙II
+
+岛屿数量
+
+扫雷游戏
+
 <================贪心算法================>
+
+常见题:
+
+lemonade-change 柠檬水找零 贪心算法，模拟
+
+assign-cookies 分发饼干
+
+walking-robot-simulation模拟行走机器人
+
+jump-game 跳跃游戏
+
+jump-game-ii 跳跃游戏ii 
+
+买卖股票系列问题
 
 <================二分查找================>
 
+代码模版:
+
+    /* JavaScript */
+    let left = 0, right = len(array) - 1
+    while (left <= right) {
+      let mid = (left + right) >> 1
+      if (array[mid] === target) { /*find the target*/; return }
+      else if (array[mid] < target) left = mid + 1
+      else right = mid - 1
+    }
+
+常见题:
+
+sqrtx x的平方根
+
+valid-perfect-square 有效的完全平方数
+
 <================动态规划================>
+
+    MIT五步DP
+    1. define subproblems
+    2. guess(part of solution)
+    3. relate subproblem solutions
+    4. recurse & memorize
+    5. solve original problem
+    
+常见题:
 
 <================前缀树================>
 
@@ -157,7 +361,11 @@ number-of-islands 岛屿数量
         }
     }
     
+word-search 单词搜索
+    
 word-search-ii 单词搜索ii
+
+friend-circles 朋友圈
 
 <================并查集================>
 
@@ -169,7 +377,7 @@ disjoint set
 
 基本操作:makeSet(s)、unionSet(x,y)、find(x)
 
-常见题目:
+常见题:
 
 friend-circles 朋友圈
 
@@ -224,6 +432,8 @@ AVL:
 
 平均时间复杂度: 查找 O(log(n)) 插入 O(log(n)) 删除 O(log(n))
 
+4种旋转操作
+
 红黑树:
 
 平均时间复杂度: 查找 O(log(n)) 插入 O(log(n)) 删除 O(log(n))
@@ -258,7 +468,7 @@ C++、Java 中树的实现一般是红黑树  database一般是AVL
     
     X&~X=>0
 
-常见题目:
+常见题:
 
 n-queens N皇后
 
