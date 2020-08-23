@@ -17,7 +17,7 @@
 // 解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。
 
 // 贪心法
-
+// O(n)  O(1)
 /**
  * @param {number[]} nums
  * @return {boolean}
@@ -32,3 +32,65 @@ var canJump = function(nums) {
     }
     return false;
 };
+
+
+// public boolean flag;
+// public boolean canJump(int[] nums) {
+//     int len = nums.length;
+//     flag = false;
+//     if(len <= 1)        return true;
+//
+//     dfs(nums, 0);
+//     return flag;
+// }
+//
+// private void dfs(int[] nums, int start) {
+//     if(start >= nums.length - 1)
+//     {
+//         flag = true;
+//         return;
+//     }
+//
+//     if(nums[start] == 0)        return;
+//
+//     for(int i = 1; i <= nums[start]; i++)
+//     {
+//         int nextStart = start + i;
+//
+//         dfs(nums, nextStart);
+//     }
+// }
+// 方案二 动态规划
+
+/*
+	dp 优化过后
+*/
+var canJump = function(nums) {
+    let size = nums.length;
+    if (size <= 1) return true;
+    
+    let dp = new Array(size).fill(false);
+    // base case
+    dp[0] = true;
+    
+    for (let i = 1; i < size; i++) {
+        for (let j = 0; j < i; j ++) {
+            if (dp[j] && j + nums[j] >= i){
+                dp[i] = true;
+                break;
+            }
+        }
+    }
+    
+    return dp[size - 1];
+};
+
+var canJump = function (nums) {
+    let size = nums.length;
+    let dist = 0;
+    for (let i = 0; i < size; i++) {
+        if (dist < i || dist >= size - 1) break;
+        dist = Math.max(dist, i + nums[i]);
+    }
+    return dist >= size - 1;
+}

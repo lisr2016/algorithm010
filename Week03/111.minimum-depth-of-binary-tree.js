@@ -15,3 +15,94 @@
 // /  \
 //    15   7
 // 返回它的最小深度  2.
+
+// DFS:
+
+const minDepth = (root) => {
+    if (root == null) return 0;
+    
+    if (root.left && root.right) {
+        return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+    } else if (root.left) {
+        return 1 + minDepth(root.left);
+    } else if (root.right) {
+        return 1 + minDepth(root.right);
+    } else {
+        return 1;
+    }
+};
+
+const minDepth = (root) => {
+    if (root == null) return 0;
+    
+    const left = minDepth(root.left);
+    const right = minDepth(root.right);
+    
+    if (left > 0 && right > 0) {
+        return 1 + Math.min(left, right);
+    } else if (left > 0) {
+        return 1 + left;
+    } else if (right > 0) {
+        return 1 + right;
+    } else {
+        return 1;
+    }
+};
+
+const minDepth = (root) => {
+    if (root == null) return 0;
+    
+    let depth = 1;
+    
+    if (root.left && root.right) {
+        const left = minDepth(root.left);
+        const right = minDepth(root.right);
+        depth += Math.min(left, right);
+    } else if (root.left) {
+        depth += minDepth(root.left);
+    } else if (root.right) {
+        depth += minDepth(root.right);
+    }
+    // else {
+    //   depth += 0;
+    // }
+    return depth;
+};
+
+const minDepth = (root) => {
+    if (root == null) return 0;
+    
+    let depth = Infinity;
+    if (root.left) {
+        depth = Math.min(depth, 1 + minDepth(root.left));
+    }
+    if (root.right) {
+        depth = Math.min(depth, 1 + minDepth(root.right));
+    }
+    if (root.left == null && root.right == null) {
+        depth = 1;
+    }
+    return depth;
+};
+
+// BFS:
+
+const minDepth = (root) => {
+    if (root == null) return 0;
+    
+    const queue = [root];
+    let depth = 1;
+    
+    while (queue.length) {
+        const levelSize = queue.length;
+        for (let i = 0; i < levelSize; i++) {
+            const cur = queue.shift();
+            if (cur.left == null && cur.right == null) {
+                return depth;
+            }
+            if (cur.left) queue.push(cur.left);
+            if (cur.right) queue.push(cur.right);
+        }
+        depth++; // 肯定有下一层，如果没有早就return了
+    }
+};
